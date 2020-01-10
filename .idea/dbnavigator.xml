@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DBNavigator.Project.DataEditorManager">
+    <record-view-column-sorting-type value="BY_INDEX" />
+    <value-preview-text-wrapping value="false" />
+    <value-preview-pinned value="false" />
+  </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="UTF-8" />
+    </export-instructions>
+  </component>
+  <component name="DBNavigator.Project.DatabaseBrowserManager">
+    <autoscroll-to-editor value="false" />
+    <autoscroll-from-editor value="true" />
+    <show-object-properties value="true" />
+    <loaded-nodes />
+  </component>
+  <component name="DBNavigator.Project.DatabaseConsoleManager">
+    <connection id="ef0506e3-449d-4871-95fb-cc5748345fc5">
+      <console name="Connection" type="STANDARD" schema="astro" session="Main"><![CDATA[INSERT INTO astro_obj (id, name) values
+(1, 'Sun'),
+(2, 'Moon'),
+(3, 'Mercury'),
+(4, 'Venus'),
+(5, 'Mars'),
+(6, 'Jupiter'),
+(7, 'Saturn'),
+(8, 'Uranus'),
+(9, 'Neptun'),
+(10, 'Pluto');
+
+
+INSERT INTO moment (id, timestp) values
+(1, '1000-01-01 00:00:00');
+
+INSERT INTO `position` (astro_obj, moment, angel) values
+(1, 1, 0.0),
+(2, 1, 0.0),
+(3, 1, 90.0),
+(4, 1, 180.0),
+(5, 1, 30.0),
+(6, 1, 135.0),
+(7, 1, 60.0),
+(8, 1, 0.0),
+(9, 1, 80.0),
+(10, 1, 100.0);
+
+CREATE OR REPLACE VIEW EPH AS
+SELECT 
+    m.timestp,
+    p1.angel AS sun,
+    p2.angel AS moon,
+    p3.angel AS mercury,
+    p4.angel AS venus,
+    p5.angel AS mars,
+    p6.angel AS jupiter,
+    p7.angel AS saturn,
+    p8.angel AS uranus,
+    p9.angel AS neptun,
+    p10.angel AS pluto
+FROM moment m
+LEFT OUTER JOIN `position` p1 ON p1.moment = m.id AND p1.astro_obj = 1
+LEFT OUTER JOIN `position` p2 ON p2.moment = m.id AND p2.astro_obj = 2
+LEFT OUTER JOIN `position` p3 ON p3.moment = m.id AND p3.astro_obj = 3
+LEFT OUTER JOIN `position` p4 ON p4.moment = m.id AND p4.astro_obj = 4
+LEFT OUTER JOIN `position` p5 ON p5.moment = m.id AND p5.astro_obj = 5
+LEFT OUTER JOIN `position` p6 ON p6.moment = m.id AND p6.astro_obj = 6
+LEFT OUTER JOIN `position` p7 ON p7.moment = m.id AND p7.astro_obj = 7
+LEFT OUTER JOIN `position` p8 ON p8.moment = m.id AND p8.astro_obj = 8
+LEFT OUTER JOIN `position` p9 ON p9.moment = m.id AND p9.astro_obj = 9
+LEFT OUTER JOIN `position` p10 ON p10.moment = m.id AND p10.astro_obj = 10;
+
+CREATE OR REPLACE VIEW EPHASPECTS AS 
+SELECT timestp,
+asp0(sun,moon) AS Sun_Moon0,
+asp30(sun,moon) AS Sun_Moon30,
+asp45(sun,moon) AS Sun_Moon45,
+asp60(sun,moon) AS Sun_Moon60,
+asp90(sun,moon) AS Sun_Moon90,
+asp120(sun,moon) AS Sun_Moon120,
+asp135(sun,moon) AS Sun_Moon135,
+asp150(sun,moon) AS Sun_Moon150,
+asp180(sun,moon) AS Sun_Moon180,
+asp_sp(sun,moon) AS Sun_Moon_sp,
+asp0(sun,mercury) AS Sun_Mercury0,
+asp30(sun,mercury) AS Sun_Mercury30,
+asp45(sun,mercury) AS Sun_Mercury45,
+asp60(sun,mercury) AS Sun_Mercury60,
+asp90(sun,mercury) AS Sun_Mercury90,
+asp120(sun,mercury) AS Sun_Mercury120,
+asp135(sun,mercury) AS Sun_Mercury135,
+asp150(sun,mercury) AS Sun_Mercury150,
+asp180(sun,mercury) AS Sun_Mercury180,
+asp_sp(sun,mercury) AS Sun_Mercury_sp,
+asp0(sun,venus) AS Sun_Venus0,
+asp30(sun,venus) AS Sun_Venus30,
+asp45(sun,venus) AS Sun_Venus45,
+asp60(sun,venus) AS Sun_Venus60,
+asp90(sun,venus) AS Sun_Venus90,
+asp120(sun,venus) AS Sun_Venus120,
+asp135(sun,venus) AS Sun_Venus135,
+asp150(sun,venus) AS Sun_Venus150,
+asp180(sun,venus) AS Sun_Venus180,
+asp_sp(sun,venus) AS Sun_Venus_sp,
+asp0(sun,mars) AS Sun_Mars0,
+asp30(sun,mars) AS Sun_Mars30,
+asp45(sun,mars) AS Sun_Mars45,
+asp60(sun,mars) AS Sun_Mars60,
+asp90(sun,mars) AS Sun_Mars90,
+asp120(sun,mars) AS Sun_Mars120,
+asp135(sun,mars) AS Sun_Mars135,
+asp150(sun,mars) AS Sun_Mars150,
+asp180(sun,mars) AS Sun_Mars180,
+asp_sp(sun,mars) AS Sun_Mars_sp,
+asp0(sun,jupiter) AS Sun_Jupiter0,
+asp30(sun,jupiter) AS Sun_Jupiter30,
+asp45(sun,jupiter) AS Sun_Jupiter45,
+asp60(sun,jupiter) AS Sun_Jupiter60,
+asp90(sun,jupiter) AS Sun_Jupiter90,
+asp120(sun,jupiter) AS Sun_Jupiter120,
+asp135(sun,jupiter) AS Sun_Jupiter135,
+asp150(sun,jupiter) AS Sun_Jupiter150,
+asp180(sun,jupiter) AS Sun_Jupiter180,
+asp_sp(sun,jupiter) AS Sun_Jupiter_sp,
+asp0(sun,saturn) AS Sun_Saturn0,
+asp30(sun,saturn) AS Sun_Saturn30,
+asp45(sun,saturn) AS Sun_Saturn45,
+asp60(sun,saturn) AS Sun_Saturn60,
+asp90(sun,saturn) AS Sun_Saturn90,
+asp120(sun,saturn) AS Sun_Saturn120,
+asp135(sun,saturn) AS Sun_Saturn135,
+asp150(sun,saturn) AS Sun_Saturn150,
+asp180(sun,saturn) AS Sun_Saturn180,
+asp_sp(sun,saturn) AS Sun_Saturn_sp,
+asp0(sun,uranus) AS Sun_Uranus0,
+asp30(sun,uranus) AS Sun_Uranus30,
+asp45(sun,uranus) AS Sun_Uranus45,
+asp60(sun,uranus) AS Sun_Uranus60,
+asp90(sun,uranus) AS Sun_Uranus90,
+asp120(sun,uranus) AS Sun_Uranus120,
+asp135(sun,uranus) AS Sun_Uranus135,
+asp150(sun,uranus) AS Sun_Uranus150,
+asp180(sun,uranus) AS Sun_Uranus180,
+asp_sp(sun,uranus) AS Sun_Uranus_sp,
+asp0(sun,neptun) AS Sun_Neptune0,
+asp30(sun,neptun) AS Sun_Neptune30,
+asp45(sun,neptun) AS Sun_Neptune45,
+asp60(sun,neptun) AS Sun_Neptune60,
+asp90(sun,neptun) AS Sun_Neptune90,
+asp120(sun,neptun) AS Sun_Neptune120,
+asp135(sun,neptun) AS Sun_Neptune135,
+asp150(sun,neptun) AS Sun_Neptune150,
+asp180(sun,neptun) AS Sun_Neptune180,
+asp_sp(sun,neptun) AS Sun_Neptune_sp,
+asp0(sun,pluto) AS Sun_Pluto0,
+asp30(sun,pluto) AS Sun_Pluto30,
+asp45(sun,pluto) AS Sun_Pluto45,
+asp60(sun,pluto) AS Sun_Pluto60,
+asp90(sun,pluto) AS Sun_Pluto90,
+asp120(sun,pluto) AS Sun_Pluto120,
+asp135(sun,pluto) AS Sun_Pluto135,
+asp150(sun,pluto) AS Sun_Pluto150,
+asp180(sun,pluto) AS Sun_Pluto180,
+asp_sp(sun,pluto) AS Sun_Pluto_sp,
+asp0(moon,mercury) AS Moon_Mercury0,
+asp30(moon,mercury) AS Moon_Mercury30,
+asp45(moon,mercury) AS Moon_Mercury45,
+asp60(moon,mercury) AS Moon_Mercury60,
+asp90(moon,mercury) AS Moon_Mercury90,
+asp120(moon,mercury) AS Moon_Mercury120,
+asp135(moon,mercury) AS Moon_Mercury135,
+asp150(moon,mercury) AS Moon_Mercury150,
+asp180(moon,mercury) AS Moon_Mercury180,
+asp_sp(moon,mercury) AS Moon_Mercury_sp,
+asp0(moon,venus) AS Moon_Venus0,
+asp30(moon,venus) AS Moon_Venus30,
+asp45(moon,venus) AS Moon_Venus45,
+asp60(moon,venus) AS Moon_Venus60,
+asp90(moon,venus) AS Moon_Venus90,
+asp120(moon,venus) AS Moon_Venus120,
+asp135(moon,venus) AS Moon_Venus135,
+asp150(moon,venus) AS Moon_Venus150,
+asp180(moon,venus) AS Moon_Venus180,
+asp_sp(moon,venus) AS Moon_Venus_sp,
+asp0(moon,mars) AS Moon_Mars0,
+asp30(moon,mars) AS Moon_Mars30,
+asp45(moon,mars) AS Moon_Mars45,
+asp60(moon,mars) AS Moon_Mars60,
+asp90(moon,mars) AS Moon_Mars90,
+asp120(moon,mars) AS Moon_Mars120,
+asp135(moon,mars) AS Moon_Mars135,
+asp150(moon,mars) AS Moon_Mars150,
+asp180(moon,mars) AS Moon_Mars180,
+asp_sp(moon,mars) AS Moon_Mars_sp,
+asp0(moon,jupiter) AS Moon_Jupiter0,
+asp30(moon,jupiter) AS Moon_Jupiter30,
+asp45(moon,jupiter) AS Moon_Jupiter45,
+asp60(moon,jupiter) AS Moon_Jupiter60,
+asp90(moon,jupiter) AS Moon_Jupiter90,
+asp120(moon,jupiter) AS Moon_Jupiter120,
+asp135(moon,jupiter) AS Moon_Jupiter135,
+asp150(moon,jupiter) AS Moon_Jupiter150,
+asp180(moon,jupiter) AS Moon_Jupiter180,
+asp_sp(moon,jupiter) AS Moon_Jupiter_sp,
+asp0(moon,saturn) AS Moon_Saturn0,
+asp30(moon,saturn) AS Moon_Saturn30,
+asp45(moon,saturn) AS Moon_Saturn45,
+asp60(moon,saturn) AS Moon_Saturn60,
+asp90(moon,saturn) AS Moon_Saturn90,
+asp120(moon,saturn) AS Moon_Saturn120,
+asp135(moon,saturn) AS Moon_Saturn135,
+asp150(moon,saturn) AS Moon_Saturn150,
+asp180(moon,saturn) AS Moon_Saturn180,
+asp_sp(moon,saturn) AS Moon_Saturn_sp,
+asp0(moon,uranus) AS Moon_Uranus0,
+asp30(moon,uranus) AS Moon_Uranus30,
+asp45(moon,uranus) AS Moon_Uranus45,
+asp60(moon,uranus) AS Moon_Uranus60,
+asp90(moon,uranus) AS Moon_Uranus90,
+asp120(moon,uranus) AS Moon_Uranus120,
+asp135(moon,uranus) AS Moon_Uranus135,
+asp150(moon,uranus) AS Moon_Uranus150,
+asp180(moon,uranus) AS Moon_Uranus180,
+asp_sp(moon,uranus) AS Moon_Uranus_sp,
+asp0(moon,neptun) AS Moon_Neptune0,
+asp30(moon,neptun) AS Moon_Neptune30,
+asp45(moon,neptun) AS Moon_Neptune45,
+asp60(moon,neptun) AS Moon_Neptune60,
+asp90(moon,neptun) AS Moon_Neptune90,
+asp120(moon,neptun) AS Moon_Neptune120,
+asp135(moon,neptun) AS Moon_Neptune135,
+asp150(moon,neptun) AS Moon_Neptune150,
+asp180(moon,neptun) AS Moon_Neptune180,
+asp_sp(moon,neptun) AS Moon_Neptune_sp,
+asp0(moon,pluto) AS Moon_Pluto0,
+asp30(moon,pluto) AS Moon_Pluto30,
+asp45(moon,pluto) AS Moon_Pluto45,
+asp60(moon,pluto) AS Moon_Pluto60,
+asp90(moon,pluto) AS Moon_Pluto90,
+asp120(moon,pluto) AS Moon_Pluto120,
+asp135(moon,pluto) AS Moon_Pluto135,
+asp150(moon,pluto) AS Moon_Pluto150,
+asp180(moon,pluto) AS Moon_Pluto180,
+asp_sp(moon,pluto) AS Moon_Pluto_sp,
+asp0(mercury,venus) AS Mercury_Venus0,
+asp30(mercury,venus) AS Mercury_Venus30,
+asp45(mercury,venus) AS Mercury_Venus45,
+asp60(mercury,venus) AS Mercury_Venus60,
+asp90(mercury,venus) AS Mercury_Venus90,
+asp120(mercury,venus) AS Mercury_Venus120,
+asp135(mercury,venus) AS Mercury_Venus135,
+asp150(mercury,venus) AS Mercury_Venus150,
+asp180(mercury,venus) AS Mercury_Venus180,
+asp_sp(mercury,venus) AS Mercury_Venus_sp,
+asp0(mercury,mars) AS Mercury_Mars0,
+asp30(mercury,mars) AS Mercury_Mars30,
+asp45(mercury,mars) AS Mercury_Mars45,
+asp60(mercury,mars) AS Mercury_Mars60,
+asp90(mercury,mars) AS Mercury_Mars90,
+asp120(mercury,mars) AS Mercury_Mars120,
+asp135(mercury,mars) AS Mercury_Mars135,
+asp150(mercury,mars) AS Mercury_Mars150,
+asp180(mercury,mars) AS Mercury_Mars180,
+asp_sp(mercury,mars) AS Mercury_Mars_sp,
+asp0(mercury,jupiter) AS Mercury_Jupiter0,
+asp30(mercury,jupiter) AS Mercury_Jupiter30,
+asp45(mercury,jupiter) AS Mercury_Jupiter45,
+asp60(mercury,jupiter) AS Mercury_Jupiter60,
+asp90(mercury,jupiter) AS Mercury_Jupiter90,
+asp120(mercury,jupiter) AS Mercury_Jupiter120,
+asp135(mercury,jupiter) AS Mercury_Jupiter135,
+asp150(mercury,jupiter) AS Mercury_Jupiter150,
+asp180(mercury,jupiter) AS Mercury_Jupiter180,
+asp_sp(mercury,jupiter) AS Mercury_Jupiter_sp,
+asp0(mercury,saturn) AS Mercury_Saturn0,
+asp30(mercury,saturn) AS Mercury_Saturn30,
+asp45(mercury,saturn) AS Mercury_Saturn45,
+asp60(mercury,saturn) AS Mercury_Saturn60,
+asp90(mercury,saturn) AS Mercury_Saturn90,
+asp120(mercury,saturn) AS Mercury_Saturn120,
+asp135(mercury,saturn) AS Mercury_Saturn135,
+asp150(mercury,saturn) AS Mercury_Saturn150,
+asp180(mercury,saturn) AS Mercury_Saturn180,
+asp_sp(mercury,saturn) AS Mercury_Saturn_sp,
+asp0(mercury,uranus) AS Mercury_Uranus0,
+asp30(mercury,uranus) AS Mercury_Uranus30,
+asp45(mercury,uranus) AS Mercury_Uranus45,
+asp60(mercury,uranus) AS Mercury_Uranus60,
+asp90(mercury,uranus) AS Mercury_Uranus90,
+asp120(mercury,uranus) AS Mercury_Uranus120,
+asp135(mercury,uranus) AS Mercury_Uranus135,
+asp150(mercury,uranus) AS Mercury_Uranus150,
+asp180(mercury,uranus) AS Mercury_Uranus180,
+asp_sp(mercury,uranus) AS Mercury_Uranus_sp,
+asp0(mercury,neptun) AS Mercury_Neptune0,
+asp30(mercury,neptun) AS Mercury_Neptune30,
+asp45(mercury,neptun) AS Mercury_Neptune45,
+asp60(mercury,neptun) AS Mercury_Neptune60,
+asp90(mercury,neptun) AS Mercury_Neptune90,
+asp120(mercury,neptun) AS Mercury_Neptune120,
+asp135(mercury,neptun) AS Mercury_Neptune135,
+asp150(mercury,neptun) AS Mercury_Neptune150,
+asp180(mercury,neptun) AS Mercury_Neptune180,
+asp_sp(mercury,neptun) AS Mercury_Neptune_sp,
+asp0(mercury,pluto) AS Mercury_Pluto0,
+asp30(mercury,pluto) AS Mercury_Pluto30,
+asp45(mercury,pluto) AS Mercury_Pluto45,
+asp60(mercury,pluto) AS Mercury_Pluto60,
+asp90(mercury,pluto) AS Mercury_Pluto90,
+asp120(mercury,pluto) AS Mercury_Pluto120,
+asp135(mercury,pluto) AS Mercury_Pluto135,
+asp150(mercury,pluto) AS Mercury_Pluto150,
+asp180(mercury,pluto) AS Mercury_Pluto180,
+asp_sp(mercury,pluto) AS Mercury_Pluto_sp,
+asp0(venus,mars) AS Venus_Mars0,
+asp30(venus,mars) AS Venus_Mars30,
+asp45(venus,mars) AS Venus_Mars45,
+asp60(venus,mars) AS Venus_Mars60,
+asp90(venus,mars) AS Venus_Mars90,
+asp120(venus,mars) AS Venus_Mars120,
+asp135(venus,mars) AS Venus_Mars135,
+asp150(venus,mars) AS Venus_Mars150,
+asp180(venus,mars) AS Venus_Mars180,
+asp_sp(venus,mars) AS Venus_Mars_sp,
+asp0(venus,jupiter) AS Venus_Jupiter0,
+asp30(venus,jupiter) AS Venus_Jupiter30,
+asp45(venus,jupiter) AS Venus_Jupiter45,
+asp60(venus,jupiter) AS Venus_Jupiter60,
+asp90(venus,jupiter) AS Venus_Jupiter90,
+asp120(venus,jupiter) AS Venus_Jupiter120,
+asp135(venus,jupiter) AS Venus_Jupiter135,
+asp150(venus,jupiter) AS Venus_Jupiter150,
+asp180(venus,jupiter) AS Venus_Jupiter180,
+asp_sp(venus,jupiter) AS Venus_Jupiter_sp,
+asp0(venus,saturn) AS Venus_Saturn0,
+asp30(venus,saturn) AS Venus_Saturn30,
+asp45(venus,saturn) AS Venus_Saturn45,
+asp60(venus,saturn) AS Venus_Saturn60,
+asp90(venus,saturn) AS Venus_Saturn90,
+asp120(venus,saturn) AS Venus_Saturn120,
+asp135(venus,saturn) AS Venus_Saturn135,
+asp150(venus,saturn) AS Venus_Saturn150,
+asp180(venus,saturn) AS Venus_Saturn180,
+asp_sp(venus,saturn) AS Venus_Saturn_sp,
+asp0(venus,uranus) AS Venus_Uranus0,
+asp30(venus,uranus) AS Venus_Uranus30,
+asp45(venus,uranus) AS Venus_Uranus45,
+asp60(venus,uranus) AS Venus_Uranus60,
+asp90(venus,uranus) AS Venus_Uranus90,
+asp120(venus,uranus) AS Venus_Uranus120,
+asp135(venus,uranus) AS Venus_Uranus135,
+asp150(venus,uranus) AS Venus_Uranus150,
+asp180(venus,uranus) AS Venus_Uranus180,
+asp_sp(venus,uranus) AS Venus_Uranus_sp,
+asp0(venus,neptun) AS Venus_Neptune0,
+asp30(venus,neptun) AS Venus_Neptune30,
+asp45(venus,neptun) AS Venus_Neptune45,
+asp60(venus,neptun) AS Venus_Neptune60,
+asp90(venus,neptun) AS Venus_Neptune90,
+asp120(venus,neptun) AS Venus_Neptune120,
+asp135(venus,neptun) AS Venus_Neptune135,
+asp150(venus,neptun) AS Venus_Neptune150,
+asp180(venus,neptun) AS Venus_Neptune180,
+asp_sp(venus,neptun) AS Venus_Neptune_sp,
+asp0(venus,pluto) AS Venus_Pluto0,
+asp30(venus,pluto) AS Venus_Pluto30,
+asp45(venus,pluto) AS Venus_Pluto45,
+asp60(venus,pluto) AS Venus_Pluto60,
+asp90(venus,pluto) AS Venus_Pluto90,
+asp120(venus,pluto) AS Venus_Pluto120,
+asp135(venus,pluto) AS Venus_Pluto135,
+asp150(venus,pluto) AS Venus_Pluto150,
+asp180(venus,pluto) AS Venus_Pluto180,
+asp_sp(venus,pluto) AS Venus_Pluto_sp,
+asp0(mars,jupiter) AS Mars_Jupiter0,
+asp30(mars,jupiter) AS Mars_Jupiter30,
+asp45(mars,jupiter) AS Mars_Jupiter45,
+asp60(mars,jupiter) AS Mars_Jupiter60,
+asp90(mars,jupiter) AS Mars_Jupiter90,
+asp120(mars,jupiter) AS Mars_Jupiter120,
+asp135(mars,jupiter) AS Mars_Jupiter135,
+asp150(mars,jupiter) AS Mars_Jupiter150,
+asp180(mars,jupiter) AS Mars_Jupiter180,
+asp_sp(mars,jupiter) AS Mars_Jupiter_sp,
+asp0(mars,saturn) AS Mars_Saturn0,
+asp30(mars,saturn) AS Mars_Saturn30,
+asp45(mars,saturn) AS Mars_Saturn45,
+asp60(mars,saturn) AS Mars_Saturn60,
+asp90(mars,saturn) AS Mars_Saturn90,
+asp120(mars,saturn) AS Mars_Saturn120,
+asp135(mars,saturn) AS Mars_Saturn135,
+asp150(mars,saturn) AS Mars_Saturn150,
+asp180(mars,saturn) AS Mars_Saturn180,
+asp_sp(mars,saturn) AS Mars_Saturn_sp,
+asp0(mars,uranus) AS Mars_Uranus0,
+asp30(mars,uranus) AS Mars_Uranus30,
+asp45(mars,uranus) AS Mars_Uranus45,
+asp60(mars,uranus) AS Mars_Uranus60,
+asp90(mars,uranus) AS Mars_Uranus90,
+asp120(mars,uranus) AS Mars_Uranus120,
+asp135(mars,uranus) AS Mars_Uranus135,
+asp150(mars,uranus) AS Mars_Uranus150,
+asp180(mars,uranus) AS Mars_Uranus180,
+asp_sp(mars,uranus) AS Mars_Uranus_sp,
+asp0(mars,neptun) AS Mars_Neptune0,
+asp30(mars,neptun) AS Mars_Neptune30,
+asp45(mars,neptun) AS Mars_Neptune45,
+asp60(mars,neptun) AS Mars_Neptune60,
+asp90(mars,neptun) AS Mars_Neptune90,
+asp120(mars,neptun) AS Mars_Neptune120,
+asp135(mars,neptun) AS Mars_Neptune135,
+asp150(mars,neptun) AS Mars_Neptune150,
+asp180(mars,neptun) AS Mars_Neptune180,
+asp_sp(mars,neptun) AS Mars_Neptune_sp,
+asp0(mars,pluto) AS Mars_Pluto0,
+asp30(mars,pluto) AS Mars_Pluto30,
+asp45(mars,pluto) AS Mars_Pluto45,
+asp60(mars,pluto) AS Mars_Pluto60,
+asp90(mars,pluto) AS Mars_Pluto90,
+asp120(mars,pluto) AS Mars_Pluto120,
+asp135(mars,pluto) AS Mars_Pluto135,
+asp150(mars,pluto) AS Mars_Pluto150,
+asp180(mars,pluto) AS Mars_Pluto180,
+asp_sp(mars,pluto) AS Mars_Pluto_sp,
+asp0(jupiter,saturn) AS Jupiter_Saturn0,
+asp30(jupiter,saturn) AS Jupiter_Saturn30,
+asp45(jupiter,saturn) AS Jupiter_Saturn45,
+asp60(jupiter,saturn) AS Jupiter_Saturn60,
+asp90(jupiter,saturn) AS Jupiter_Saturn90,
+asp120(jupiter,saturn) AS Jupiter_Saturn120,
+asp135(jupiter,saturn) AS Jupiter_Saturn135,
+asp150(jupiter,saturn) AS Jupiter_Saturn150,
+asp180(jupiter,saturn) AS Jupiter_Saturn180,
+asp_sp(jupiter,saturn) AS Jupiter_Saturn_sp,
+asp0(jupiter,uranus) AS Jupiter_Uranus0,
+asp30(jupiter,uranus) AS Jupiter_Uranus30,
+asp45(jupiter,uranus) AS Jupiter_Uranus45,
+asp60(jupiter,uranus) AS Jupiter_Uranus60,
+asp90(jupiter,uranus) AS Jupiter_Uranus90,
+asp120(jupiter,uranus) AS Jupiter_Uranus120,
+asp135(jupiter,uranus) AS Jupiter_Uranus135,
+asp150(jupiter,uranus) AS Jupiter_Uranus150,
+asp180(jupiter,uranus) AS Jupiter_Uranus180,
+asp_sp(jupiter,uranus) AS Jupiter_Uranus_sp,
+asp0(jupiter,neptun) AS Jupiter_Neptune0,
+asp30(jupiter,neptun) AS Jupiter_Neptune30,
+asp45(jupiter,neptun) AS Jupiter_Neptune45,
+asp60(jupiter,neptun) AS Jupiter_Neptune60,
+asp90(jupiter,neptun) AS Jupiter_Neptune90,
+asp120(jupiter,neptun) AS Jupiter_Neptune120,
+asp135(jupiter,neptun) AS Jupiter_Neptune135,
+asp150(jupiter,neptun) AS Jupiter_Neptune150,
+asp180(jupiter,neptun) AS Jupiter_Neptune180,
+asp_sp(jupiter,neptun) AS Jupiter_Neptune_sp,
+asp0(jupiter,pluto) AS Jupiter_Pluto0,
+asp30(jupiter,pluto) AS Jupiter_Pluto30,
+asp45(jupiter,pluto) AS Jupiter_Pluto45,
+asp60(jupiter,pluto) AS Jupiter_Pluto60,
+asp90(jupiter,pluto) AS Jupiter_Pluto90,
+asp120(jupiter,pluto) AS Jupiter_Pluto120,
+asp135(jupiter,pluto) AS Jupiter_Pluto135,
+asp150(jupiter,pluto) AS Jupiter_Pluto150,
+asp180(jupiter,pluto) AS Jupiter_Pluto180,
+asp_sp(jupiter,pluto) AS Jupiter_Pluto_sp,
+asp0(saturn,uranus) AS Saturn_Uranus0,
+asp30(saturn,uranus) AS Saturn_Uranus30,
+asp45(saturn,uranus) AS Saturn_Uranus45,
+asp60(saturn,uranus) AS Saturn_Uranus60,
+asp90(saturn,uranus) AS Saturn_Uranus90,
+asp120(saturn,uranus) AS Saturn_Uranus120,
+asp135(saturn,uranus) AS Saturn_Uranus135,
+asp150(saturn,uranus) AS Saturn_Uranus150,
+asp180(saturn,uranus) AS Saturn_Uranus180,
+asp_sp(saturn,uranus) AS Saturn_Uranus_sp,
+asp0(saturn,neptun) AS Saturn_Neptune0,
+asp30(saturn,neptun) AS Saturn_Neptune30,
+asp45(saturn,neptun) AS Saturn_Neptune45,
+asp60(saturn,neptun) AS Saturn_Neptune60,
+asp90(saturn,neptun) AS Saturn_Neptune90,
+asp120(saturn,neptun) AS Saturn_Neptune120,
+asp135(saturn,neptun) AS Saturn_Neptune135,
+asp150(saturn,neptun) AS Saturn_Neptune150,
+asp180(saturn,neptun) AS Saturn_Neptune180,
+asp_sp(saturn,neptun) AS Saturn_Neptune_sp,
+asp0(saturn,pluto) AS Saturn_Pluto0,
+asp30(saturn,pluto) AS Saturn_Pluto30,
+asp45(saturn,pluto) AS Saturn_Pluto45,
+asp60(saturn,pluto) AS Saturn_Pluto60,
+asp90(saturn,pluto) AS Saturn_Pluto90,
+asp120(saturn,pluto) AS Saturn_Pluto120,
+asp135(saturn,pluto) AS Saturn_Pluto135,
+asp150(saturn,pluto) AS Saturn_Pluto150,
+asp180(saturn,pluto) AS Saturn_Pluto180,
+asp_sp(saturn,pluto) AS Saturn_Pluto_sp,
+asp0(uranus,neptun) AS Uranus_Neptune0,
+asp30(uranus,neptun) AS Uranus_Neptune30,
+asp45(uranus,neptun) AS Uranus_Neptune45,
+asp60(uranus,neptun) AS Uranus_Neptune60,
+asp90(uranus,neptun) AS Uranus_Neptune90,
+asp120(uranus,neptun) AS Uranus_Neptune120,
+asp135(uranus,neptun) AS Uranus_Neptune135,
+asp150(uranus,neptun) AS Uranus_Neptune150,
+asp180(uranus,neptun) AS Uranus_Neptune180,
+asp_sp(uranus,neptun) AS Uranus_Neptune_sp,
+asp0(uranus,pluto) AS Uranus_Pluto0,
+asp30(uranus,pluto) AS Uranus_Pluto30,
+asp45(uranus,pluto) AS Uranus_Pluto45,
+asp60(uranus,pluto) AS Uranus_Pluto60,
+asp90(uranus,pluto) AS Uranus_Pluto90,
+asp120(uranus,pluto) AS Uranus_Pluto120,
+asp135(uranus,pluto) AS Uranus_Pluto135,
+asp150(uranus,pluto) AS Uranus_Pluto150,
+asp180(uranus,pluto) AS Uranus_Pluto180,
+asp_sp(uranus,pluto) AS Uranus_Pluto_sp,
+asp0(neptun,pluto) AS Neptune_Pluto0,
+asp30(neptun,pluto) AS Neptune_Pluto30,
+asp45(neptun,pluto) AS Neptune_Pluto45,
+asp60(neptun,pluto) AS Neptune_Pluto60,
+asp90(neptun,pluto) AS Neptune_Pluto90,
+asp120(neptun,pluto) AS Neptune_Pluto120,
+asp135(neptun,pluto) AS Neptune_Pluto135,
+asp150(neptun,pluto) AS Neptune_Pluto150,
+asp180(neptun,pluto) AS Neptune_Pluto180,
+asp_sp(neptun,pluto) AS Neptune_Pluto_sp
+FROM EPH
+WHERE timestp >= NOW() AND timestp < (NOW() + INTERVAL 1 DAY);
+
+DROP FUNCTION IF EXISTS calc_constalation;
+CREATE FUNCTION calc_constalation(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN IF(IF(o1>o2, o1-o2, o2-o1)>180,360-IF(o1>o2, o1-o2, o2-o1),IF(o1>o2, o1-o2, o2-o1));
+
+DROP FUNCTION IF EXISTS calc_fade;
+CREATE FUNCTION calc_fade(suspected DOUBLE, fade DOUBLE, getted DOUBLE) RETURNS DOUBLE
+RETURN IF(suspected > getted,IF((suspected - getted) / fade > 1.0 , 0, 1 - (suspected - getted) / fade),IF((getted - suspected) / fade > 1.0 , 0, 1 - (getted - suspected) / fade));
+
+DROP FUNCTION IF EXISTS asp0;
+CREATE FUNCTION asp0(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(0, 4.5, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp30;
+CREATE FUNCTION asp30(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(30, 0.5, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp45;
+CREATE FUNCTION asp45(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(45, 1, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp60;
+CREATE FUNCTION asp60(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(60, 2.5, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp90;
+CREATE FUNCTION asp90(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(90, 4, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp120;
+CREATE FUNCTION asp120(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(120, 3.5, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp135;
+CREATE FUNCTION asp135(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(135, 1.5, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp150;
+CREATE FUNCTION asp150(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(150, 2, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp180;
+CREATE FUNCTION asp180(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN calc_fade(180, 4.5, calc_constalation(o1, o2));
+
+DROP FUNCTION IF EXISTS asp_sp;
+CREATE FUNCTION asp_sp(o1 DOUBLE, o2 DOUBLE) RETURNS DOUBLE
+RETURN IF(calc_constalation(0, o1)>calc_constalation(0, o2),
+    calc_fade(calc_constalation(0, o1), 0.75, calc_constalation(0, o2)),
+    calc_fade(calc_constalation(0, o2), 0.75, calc_constalation(0, o1))) + 
+    IF(calc_constalation(90, o1)>calc_constalation(90, o2),
+    calc_fade(calc_constalation(90, o1), 0.75, calc_constalation(90, o2)),
+    calc_fade(calc_constalation(90, o2), 0.75, calc_constalation(90, o1)));
+    
+SELECT asp_sp(pluto, neptun) FROM EPH;
+
+SELECT calc_fade(calc_constalation(0, neptun), 0.75, calc_constalation(0, pluto)) FROM EPH;
+
+SELECT asp_sp(0,0),
+calc_constalation(0,0)
+ FROM DUAL;
+
+ALTER TABLE moment MODIFY id INTEGER NOT NULL AUTO_INCREMENT;
+
+SELECT  STR_TO_DATE('17-09-2010 23:45','%d-%m-%Y %H:%i') FROM DUAL;
+ SELECT id FROM astro.moment WHERE timestp = STR_TO_DATE('01-01-2020 00:00','%d-%m-%Y %H:%i');
+
+ SELECT id FROM astro.moment WHERE timestp = STR_TO_DATE('2020-01-01 00:00','%d-%m-%Y %H:%i');
+
+CREATE TABLE position (astro_obj INT, moment INT, angel DOUBLE,
+                PRIMARY KEY(astro_obj, moment),
+                FOREIGN KEY (astro_obj) REFERENCES astro_obj(id),
+                FOREIGN KEY (moment) REFERENCES moment(id)
+                );
+
+DROP TABLE position;
+
+truncate position;
+truncate moment;
+
+COMMIT;
+
+SELECT * FROM `position`;]]></console>
+    </connection>
+  </component>
+  <component name="DBNavigator.Project.DatabaseFileManager">
+    <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="ef0506e3-449d-4871-95fb-cc5748345fc5" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="ef0506e3-449d-4871-95fb-cc5748345fc5" dataset="astro.moment" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="ef0506e3-449d-4871-95fb-cc5748345fc5" dataset="astro.EPHASPECTS" active-filter-id="" />
+    <filter-actions connection-id="ef0506e3-449d-4871-95fb-cc5748345fc5" dataset="astro.position" active-filter-id="EMPTY_FILTER">
+      <filter id="922920be-4531-4267-88a3-1e694717bd37" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="astro_obj" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="ef0506e3-449d-4871-95fb-cc5748345fc5" dataset="astro.EPH" active-filter-id="" />
+    <filter-actions connection-id="ef0506e3-449d-4871-95fb-cc5748345fc5" dataset="astro.astro_obj" active-filter-id="EMPTY_FILTER" />
+  </component>
+  <component name="DBNavigator.Project.EditorStateManager">
+    <last-used-providers>
+      <object-type object-type="VIEW" editor-provider="DATA" />
+    </last-used-providers>
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/de/tobias/nicolai/db.sql" connection-id="ef0506e3-449d-4871-95fb-cc5748345fc5" session-id="MAIN" current-schema="astro" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
+  </component>
+  <component name="DBNavigator.Project.ObjectDependencyManager">
+    <last-used-dependency-type value="INCOMING" />
+  </component>
+  <component name="DBNavigator.Project.ObjectQuickFilterManager">
+    <last-used-operator value="EQUAL" />
+    <filters />
+  </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
+  </component>
+  <component name="DBNavigator.Project.Settings">
+    <connections>
+      <connection id="ef0506e3-449d-4871-95fb-cc5748345fc5" active="true">
+        <database>
+          <name value="Connection" />
+          <description value="" />
+          <database-type value="MYSQL" />
+          <config-type value="BASIC" />
+          <database-version value="5.5" />
+          <driver-source value="BUILTIN" />
+          <driver-library value="" />
+          <driver value="" />
+          <url-type value="DATABASE" />
+          <host value="localhost" />
+          <port value="3306" />
+          <database value="mysql" />
+          <type value="USER_PASSWORD" />
+          <user value="root" />
+          <deprecated-pwd value="cm9vdA==" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <deprecated-proxy-pwd value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+          <key-passphrase value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="false" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="true" />
+          <environment-type value="default" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+          </object-type-filter>
+          <object-name-filters />
+        </object-filters>
+      </connection>
+    </connections>
+    <browser-settings>
+      <general>
+        <display-mode value="TABBED" />
+        <navigation-history-size value="100" />
+        <show-object-details value="false" />
+      </general>
+      <filters>
+        <object-type-filter>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
+          <object-type name="PRIVILEGE" enabled="true" />
+          <object-type name="CHARSET" enabled="true" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED_VIEW" enabled="true" />
+          <object-type name="NESTED_TABLE" enabled="true" />
+          <object-type name="COLUMN" enabled="true" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="DATASET_TRIGGER" enabled="true" />
+          <object-type name="DATABASE_TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="true" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+          <object-type name="ARGUMENT" enabled="true" />
+          <object-type name="DIMENSION" enabled="true" />
+          <object-type name="CLUSTER" enabled="true" />
+          <object-type name="DBLINK" enabled="true" />
+        </object-type-filter>
+      </filters>
+      <sorting>
+        <object-type name="COLUMN" sorting-type="NAME" />
+        <object-type name="FUNCTION" sorting-type="NAME" />
+        <object-type name="PROCEDURE" sorting-type="NAME" />
+        <object-type name="ARGUMENT" sorting-type="POSITION" />
+      </sorting>
+      <default-editors>
+        <object-type name="VIEW" editor-type="SELECTION" />
+        <object-type name="PACKAGE" editor-type="SELECTION" />
+        <object-type name="TYPE" editor-type="SELECTION" />
+      </default-editors>
+    </browser-settings>
+    <navigation-settings>
+      <lookup-filters>
+        <lookup-objects>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="false" />
+          <object-type name="ROLE" enabled="false" />
+          <object-type name="PRIVILEGE" enabled="false" />
+          <object-type name="CHARSET" enabled="false" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED VIEW" enabled="true" />
+          <object-type name="NESTED TABLE" enabled="false" />
+          <object-type name="COLUMN" enabled="false" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="DATASET TRIGGER" enabled="true" />
+          <object-type name="DATABASE TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="false" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE ATTRIBUTE" enabled="false" />
+          <object-type name="ARGUMENT" enabled="false" />
+          <object-type name="DIMENSION" enabled="false" />
+          <object-type name="CLUSTER" enabled="false" />
+          <object-type name="DBLINK" enabled="true" />
+        </lookup-objects>
+        <force-database-load value="false" />
+        <prompt-connection-selection value="true" />
+        <prompt-schema-selection value="true" />
+      </lookup-filters>
+    </navigation-settings>
+    <dataset-grid-settings>
+      <general>
+        <enable-zooming value="true" />
+        <enable-column-tooltip value="true" />
+      </general>
+      <sorting>
+        <nulls-first value="true" />
+        <max-sorting-columns value="4" />
+      </sorting>
+      <tracking-columns>
+        <columnNames value="" />
+        <visible value="true" />
+        <editable value="false" />
+      </tracking-columns>
+    </dataset-grid-settings>
+    <dataset-editor-settings>
+      <text-editor-popup>
+        <active value="false" />
+        <active-if-empty value="false" />
+        <data-length-threshold value="100" />
+        <popup-delay value="1000" />
+      </text-editor-popup>
+      <values-actions-popup>
+        <show-popup-button value="true" />
+        <element-count-threshold value="1000" />
+        <data-length-threshold value="250" />
+      </values-actions-popup>
+      <general>
+        <fetch-block-size value="100" />
+        <fetch-timeout value="30" />
+        <trim-whitespaces value="true" />
+        <convert-empty-strings-to-null value="true" />
+        <select-content-on-cell-edit value="true" />
+        <large-value-preview-active value="true" />
+      </general>
+      <filters>
+        <prompt-filter-dialog value="true" />
+        <default-filter-type value="BASIC" />
+      </filters>
+      <qualified-text-editor text-length-threshold="300">
+        <content-types>
+          <content-type name="Text" enabled="true" />
+          <content-type name="Properties" enabled="true" />
+          <content-type name="XML" enabled="true" />
+          <content-type name="DTD" enabled="true" />
+          <content-type name="HTML" enabled="true" />
+          <content-type name="XHTML" enabled="true" />
+          <content-type name="Java" enabled="true" />
+          <content-type name="SQL" enabled="true" />
+          <content-type name="PL/SQL" enabled="true" />
+          <content-type name="Groovy" enabled="true" />
+          <content-type name="AIDL" enabled="true" />
+          <content-type name="YAML" enabled="true" />
+          <content-type name="Manifest" enabled="true" />
+        </content-types>
+      </qualified-text-editor>
+      <record-navigation>
+        <navigation-target value="VIEWER" />
+      </record-navigation>
+    </dataset-editor-settings>
+    <code-editor-settings>
+      <general>
+        <show-object-navigation-gutter value="false" />
+        <show-spec-declaration-navigation-gutter value="true" />
+        <enable-spellchecking value="true" />
+        <enable-reference-spellchecking value="false" />
+      </general>
+      <confirmations>
+        <save-changes value="false" />
+        <revert-changes value="true" />
+      </confirmations>
+    </code-editor-settings>
+    <code-completion-settings>
+      <filters>
+        <basic-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="RESERVED_WORD" id="exception" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="role" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <filter-element type="OBJECT" id="privilege" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="false" />
+            <filter-element type="OBJECT" id="view" selected="false" />
+            <filter-element type="OBJECT" id="materialized view" selected="false" />
+            <filter-element type="OBJECT" id="index" selected="false" />
+            <filter-element type="OBJECT" id="constraint" selected="false" />
+            <filter-element type="OBJECT" id="trigger" selected="false" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="false" />
+            <filter-element type="OBJECT" id="procedure" selected="false" />
+            <filter-element type="OBJECT" id="function" selected="false" />
+            <filter-element type="OBJECT" id="package" selected="false" />
+            <filter-element type="OBJECT" id="type" selected="false" />
+            <filter-element type="OBJECT" id="dimension" selected="false" />
+            <filter-element type="OBJECT" id="cluster" selected="false" />
+            <filter-element type="OBJECT" id="dblink" selected="false" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </basic-filter>
+        <extended-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="RESERVED_WORD" id="exception" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <filter-element type="OBJECT" id="role" selected="true" />
+          <filter-element type="OBJECT" id="privilege" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </extended-filter>
+      </filters>
+      <sorting enabled="true">
+        <sorting-element type="RESERVED_WORD" id="keyword" />
+        <sorting-element type="RESERVED_WORD" id="datatype" />
+        <sorting-element type="OBJECT" id="column" />
+        <sorting-element type="OBJECT" id="table" />
+        <sorting-element type="OBJECT" id="view" />
+        <sorting-element type="OBJECT" id="materialized view" />
+        <sorting-element type="OBJECT" id="index" />
+        <sorting-element type="OBJECT" id="constraint" />
+        <sorting-element type="OBJECT" id="trigger" />
+        <sorting-element type="OBJECT" id="synonym" />
+        <sorting-element type="OBJECT" id="sequence" />
+        <sorting-element type="OBJECT" id="procedure" />
+        <sorting-element type="OBJECT" id="function" />
+        <sorting-element type="OBJECT" id="package" />
+        <sorting-element type="OBJECT" id="type" />
+        <sorting-element type="OBJECT" id="dimension" />
+        <sorting-element type="OBJECT" id="cluster" />
+        <sorting-element type="OBJECT" id="dblink" />
+        <sorting-element type="OBJECT" id="schema" />
+        <sorting-element type="OBJECT" id="role" />
+        <sorting-element type="OBJECT" id="user" />
+        <sorting-element type="RESERVED_WORD" id="function" />
+        <sorting-element type="RESERVED_WORD" id="parameter" />
+      </sorting>
+      <format>
+        <enforce-code-style-case value="true" />
+      </format>
+    </code-completion-settings>
+    <execution-engine-settings>
+      <statement-execution>
+        <fetch-block-size value="100" />
+        <execution-timeout value="20" />
+        <debug-execution-timeout value="600" />
+        <focus-result value="false" />
+        <prompt-execution value="false" />
+      </statement-execution>
+      <script-execution>
+        <command-line-interfaces />
+        <execution-timeout value="300" />
+      </script-execution>
+      <method-execution>
+        <execution-timeout value="30" />
+        <debug-execution-timeout value="600" />
+        <parameter-history-size value="10" />
+      </method-execution>
+    </execution-engine-settings>
+    <operation-settings>
+      <transactions>
+        <uncommitted-changes>
+          <on-project-close value="ASK" />
+          <on-disconnect value="ASK" />
+          <on-autocommit-toggle value="ASK" />
+        </uncommitted-changes>
+        <multiple-uncommitted-changes>
+          <on-commit value="ASK" />
+          <on-rollback value="ASK" />
+        </multiple-uncommitted-changes>
+      </transactions>
+      <session-browser>
+        <disconnect-session value="ASK" />
+        <kill-session value="ASK" />
+        <reload-on-filter-change value="false" />
+      </session-browser>
+      <compiler>
+        <compile-type value="KEEP" />
+        <compile-dependencies value="ASK" />
+        <always-show-controls value="false" />
+      </compiler>
+      <debugger>
+        <debugger-type value="ASK" />
+        <use-generic-runners value="true" />
+      </debugger>
+    </operation-settings>
+    <ddl-file-settings>
+      <extensions>
+        <mapping file-type-id="VIEW" extensions="vw" />
+        <mapping file-type-id="TRIGGER" extensions="trg" />
+        <mapping file-type-id="PROCEDURE" extensions="prc" />
+        <mapping file-type-id="FUNCTION" extensions="fnc" />
+        <mapping file-type-id="PACKAGE" extensions="pkg" />
+        <mapping file-type-id="PACKAGE_SPEC" extensions="pks" />
+        <mapping file-type-id="PACKAGE_BODY" extensions="pkb" />
+        <mapping file-type-id="TYPE" extensions="tpe" />
+        <mapping file-type-id="TYPE_SPEC" extensions="tps" />
+        <mapping file-type-id="TYPE_BODY" extensions="tpb" />
+      </extensions>
+      <general>
+        <lookup-ddl-files value="true" />
+        <create-ddl-files value="false" />
+        <synchronize-ddl-files value="true" />
+        <use-qualified-names value="false" />
+        <make-scripts-rerunnable value="true" />
+      </general>
+    </ddl-file-settings>
+    <general-settings>
+      <regional-settings>
+        <date-format value="MEDIUM" />
+        <number-format value="UNGROUPED" />
+        <locale value="SYSTEM_DEFAULT" />
+        <use-custom-formats value="false" />
+      </regional-settings>
+      <environment>
+        <environment-types>
+          <environment-type id="development" name="Development" description="Development environment" color="-2430209/-12296320" readonly-code="false" readonly-data="false" />
+          <environment-type id="integration" name="Integration" description="Integration environment" color="-2621494/-12163514" readonly-code="true" readonly-data="false" />
+          <environment-type id="production" name="Production" description="Productive environment" color="-11574/-10271420" readonly-code="true" readonly-data="true" />
+          <environment-type id="other" name="Other" description="" color="-1576/-10724543" readonly-code="false" readonly-data="false" />
+        </environment-types>
+        <visibility-settings>
+          <connection-tabs value="true" />
+          <dialog-headers value="true" />
+          <object-editor-tabs value="true" />
+          <script-editor-tabs value="false" />
+          <execution-result-tabs value="true" />
+        </visibility-settings>
+      </environment>
+    </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+  </component>
+</project>
